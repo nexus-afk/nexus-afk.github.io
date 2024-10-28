@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Otomatisasikan strategi trading Anda dengan bot trading terbaik dan gratis. Maksimalkan keuntungan di binary, deriv, index, dan volatility dengan bot trading otomatis berbasis algoritma pintar dan sinyal trading real-time 24/7.Nikmati juga pilihan bot trading gratis untuk memulai trading dengan risiko minimal sambil mengoptimalkan peluang pasar">
+    <meta name="author" content="nexus pro, trading,day trading,trading strategy,live trading,trading for beginners,day trading live,trading live,stock trading,swing trading,day trading strategies,day trading for beginners,live day trading,options trading,options trading live,curso de trading,live stock trading,trading motivation,live options trading,day trading strategy,day trading for a living,day trading live">
+    <!-- Favicons -->
+    <link href="./img/favicon.ico" rel="icon">
+    <link href="./img/apple-touch-icon.png" rel="apple-touch-icon">
+    <title>NEXUS pro</title>
+    <!-- Custom fonts for this template-->
+    <link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="./css/sb-admin-2.css" rel="stylesheet">
+    <link href="./vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style type="text/css">
+    button .btn_img{
+        height: 16px;
+        width: 16px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #candleStickChart {
+        position: relative;
+        height: 50vh;
+        overflow: hidden;
+    }
+    @media screen and (max-width: 500px){
+        #candleStickChart {
+            height: 50vh;
+        }
+    }
+    .button-rise {
+        padding: 0px;
+    }
+    .button-rise .btn {
+        background-image: url('./img/dn.png');
+        background-size: 200px;
+        width: 110px;
+        background-repeat: no-repeat;
+        background-position: center; 
+    }
+    .button-rise .btn-img {
+        display: flex;
+        align-items: center;
+    }
+    .button-fall {
+        padding: 0px;
+    }
+    .button-fall .btn {
+        background-image: url('./img/up.png');
+        background-size: 200px;
+        width: 110px;
+        background-repeat: no-repeat;
+        background-position: center; 
+    }
+    .button-fall .btn-img {
+        display: flex;
+        align-items: center;
+    }
+    </style>
+</head>
+
+<body class="bg-gradient-primary" id="page-top">
+    <div id="splash">
+        <div class="container col-lg-4">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-12 col-md-9">
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card">
+                            <img  src="./img/logo.jpeg"  alt="..." >
+                        </div>
+                        <div class="card-body p-0 bg-gradient-primary">
+                            <div class="p-3">
+                                <div class="text-center">
+                                    <h6 class="text-white mb-4">Welcome Back!</h6>
+                                </div>
+                                    <div class="form-group">
+                                        <input class="form-control form-control-user" type="password" name="password" id="token" placeholder="API Deriv">
+                                    </div>
+                                    <button class="btn btn-primary btn-user btn-block" id="btnconnect">START TRADE</button>
+                                <hr class="bg-white">
+                                <div class="text-center">
+                                    <a class="small text-white" href="https://app.deriv.me/account/api-token" target="_blank">Forgot API Deriv !</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small text-white" href="https://track.deriv.be/_saWp5-04g0I5TVC3w-F7AGNd7ZgqdRLk/1/" target="_blank">Don't have Deriv acccount ?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="utama" style="display: none;">
+        <div id="wrapper">
+            <div id="content-wrapper" class="d-flex flex-column bg-gradient-primary">
+                <div id="content">
+                    <nav class="navbar navbar-expand navbar-dark bg-gradient-primary topbar mb-4 static-top shadow">
+                        <a class="navbar-brand " href="#">
+                            <img class="rounded-circle small" src="./img/ikonnex.jpeg" width="35" height="35" alt="...">
+                            <span class="small">NEXUS <sup>Pro</sup></span>
+                        </a>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown no-arrow ">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    <span class="badge badge-danger badge-counter">3+</span>
+                                </a>
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">
+                                        Alerts Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div id="notificationtext">
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown no-arrow ">
+                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="badge" id="balance"></span>
+                                    <span class="badge" id="curency"></span>
+                                </a>
+                            </li>
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-white small" id="fullname">-</span>
+                                    <img class="img-profile rounded-circle"
+                                        src="./img/undraw_profile.svg">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-gradient-primary border-0"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item text-white" href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
+                                        <span id="loginid" >0</span>
+                                    </a>
+                                    <a class="dropdown-item text-white" href="#">
+                                        <i class="fas fa-solid fa-wallet fa-sm fa-fw mr-2 "></i>
+                                        <span id="email" >0</span>
+                                    </a>
+                                    <div class="dropdown-divider text-white"></div>
+                                    <a class="dropdown-item text-white" href="logout.php"  id="logout">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
+                                        <span >Logouts</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-7 mb-2">
+                                <div class="card  mb-4  bg-transparent border-0 rounded-0 ">
+                                    <div class="input-group input-group-sm ml-2" style="width:160px;" >
+                                        <select id="symbol" class="custom-select bg-transparent text-light border-0" >
+                                            <option value="R_100" class="text-dark border-0">Volatility 100 Index</option>
+                                            <option value="R_75" class="text-dark border-0">Volatility 75 Index</option>
+                                            <option value="R_50" class="text-dark border-0">Volatility 50 Index</option>
+                                            <option value="R_25" class="text-dark border-0">Volatility 25 Index</option>
+                                            <option value="R_10" class="text-dark border-0">Volatility 10 Index</option>
+                                        </select>
+                                    </div>
+                                    <div id="candleStickChart">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-7">
+                                <div class="card mb-4 bg-transparent border-0">
+                                    <div class="card-body ">
+                                        <ul class="navbar-nav   sidebar-light" id="accordionSetup">
+                                            <li class="nav-item mb-3 ">
+                                                <div class="input-group mb-3 "  >
+                                                    <label class="input-group-text-sm text-white border-0 small"><span id="servertime">-</span></label>
+                                                </div>
+                                                <div class="input-group mb-2 "  >
+                                                    <div class="col-lg-12">
+                                                        <div id="rfmenu" >
+                                                            <div class="button-rise" style="float: left;" >
+                                                                <button class="btn  btn-img" onclick="btnput();">
+                                                                    <img src="./img/fall_icon.png" width="25" /><span class="small" 
+                                                                    style="margin-left: 10px; color:#ffffff;"
+                                                                    >Fall</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="button-fall" style="float: right;">
+                                                                <button class="btn  btn-img" onclick="btncall();">
+                                                                    <img src="./img/rise_icon.png" width="25" /><span class="small" 
+                                                                            style="margin-left: 10px; color:#ffffff;"
+                                                                    >Rise</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div id="hlmenu" style="display: none;">
+                                                            <div class="button-rise" style="float: left;">
+                                                                <button class="btn btn-md btn-img" onclick="btnput();">
+                                                                    <img src="./img/lower_icon.png" width="25" /><span class="small" 
+                                                                    style="margin-left: 10px; color:#ffffff;"
+                                                                    >Lower</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="button-fall" style="float: right;">
+                                                                <button class="btn btn-md btn-img" onclick="btncall();">
+                                                                    <img src="./img/higer_icon.png" width="25" /><span class="small" 
+                                                                    style="margin-left: 10px; color:#ffffff;">Higher</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item mb-2 ">
+                                                <div class="input-group "  >
+                                                    <label class="input-group-text-sm text-white border-0 small">Market : <span style="display: none;" id="longcode"></span></label>
+                                                </div>
+                                                <hr class="bg-white">
+                                                <div class="input-group "  >
+                                                    <label class="input-group-text-sm text-white border-0 small">Stake : <span style="display: none;" id="stakesekarang"></span></label>
+                                                </div>
+                                                <hr class="bg-white">
+                                                <div class="input-group  "  >
+                                                    <label class="input-group-text-sm text-white border-0 small">Profit : <span style="display: none;" id="indicative"></span></label>
+                                                </div>
+                                                <hr class="bg-white">
+                                            </li>
+                                            <li class="nav-item">
+                                                <div class="input-group input-group-sm mb-3 "  >
+                                                    <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0">Option</label>
+                                                    <select id="contract" class="custom-select bg-light rounded-0" >
+                                                        <option value="RF">R/F</option>
+                                                        <option value="HLH">H/L</option>
+                                                    </select>
+                                                    <input type="text" class="form-control bg-light rounded-0 " id="stake"  value="0.5">
+                                                    <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0" id="curency">USD</label>
+                                                </div>
+                                                <div class="input-group input-group-sm mb-3 " id="barrier-set" style="display: none;"  >
+                                                    <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0">High</label>
+                                                    <input type="text" class="form-control bg-light rounded-0 " id="barrier1" value="+0.82">
+                                                    <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0">Low</label>
+                                                    <input type="text" class="form-control bg-light rounded-0 " id="barrier2" value="-0.82">
+                                                </div>
+                                                <div class="input-group input-group-sm mb-2 "  >
+                                                    <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0">Duration</label>
+                                                    <input type="text" class="form-control bg-light rounded-0" id="duration" value="10">
+                                                    <select id="duration-unit" class="custom-select bg-light rounded-0" >
+                                                        <option value="t">Tick</option>
+                                                        <option value="m">Minute</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item">
+                                                <div class="input-group input-group-sm mb-2">
+                                                            <div class="form-check form-switch mr-2 form-control-sm">
+                                                                <input class="form-check-input" type="checkbox" id="autotrade" checked>
+                                                                <label class="form-check-label  text-white" for="autotrade">Trade ON/OFF</label>
+                                                            </div>
+                                                            <div class="form-check form-switch form-control-sm">
+                                                                <input class="form-check-input" type="checkbox" id="soundplay">
+                                                                <label class="form-check-label text-white" for="soundplay">Sound ON/OFF</label>
+                                                            </div>
+                                                        </div>
+                                                <a class="nav-link collapsed text-white small" href="#" data-toggle="collapse" data-target="#collapseUtiliti"
+                                                    aria-expanded="true" aria-controls="collapseUtilities">
+                                                    <i class="fas fa-fw fa-cog"></i>
+                                                    <span >Components</span>
+                                                </a>
+                                                <div id="collapseUtiliti" class="collapse" aria-labelledby="headingUtilities"
+                                                    data-parent="#accordionSetup">
+                                                    <div class="text-white py-2 collapse-inner rounded">
+                                                        <label class="collapse-header form-control-sm">Trade setup :</label>
+                                                        <div class="collapse-item input-group input-group-sm mb-3">
+                                                            <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0" >Signal</label>
+                                                            <select id="indicator" class="custom-select bg-light rounded-0" >
+                                                                <option value="manual" selected>manual</option>
+                                                                <option value="engulfing">auto</option>
+                                                            </select>
+                                                            <select id="signaltotrade" class="custom-select bg-light rounded-0" >
+                                                                <option value="standart" selected>one-way</option>
+                                                                <option value="hedge">two-way</option>
+                                                            </select>
+                                                        </div>
+                                                        <label class="collapse-header form-control-sm">Mistake analysis:</label>
+                                                        <div class="collapse-item input-group input-group-sm mb-3">
+                                                            <select id="falsesignal" class="custom-select bg-light rounded-0 border-0" >
+                                                                <option value="newanalyze" selected>Wait for new analysis</option>
+                                                                <option value="continue">Continue previous analysis</option>
+                                                                <option value="switch">Reverse previous analysis</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="collapse-item input-group input-group-sm mb-3">
+                                                            <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0" >Stake</label>
+                                                            <select id="multiplier" class="custom-select bg-light rounded-0 border-0" >
+                                                                <option value="1" selected>consistent</option>
+                                                                <option value="1.5">multiplied 1.5</option>
+                                                                <option value="2.0">multiplied 2.0</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="collapse-item input-group input-group-sm mb-3">
+                                                            <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0" >Stake limit</label>
+                                                            <input type="text" class="form-control bg-light rounded-0" id="maxstake" value="20" >
+                                                            <select id="aftermarti" class="custom-select bg-light rounded-0" >
+                                                                <option value="stopstake" selected>stop</option>
+                                                                <option value="resetstake">reset</option>
+                                                            </select>
+                                                        </div>
+                                                        <label class="collapse-header form-control-sm">Target maximum :</label>
+                                                        <div class="collapse-item input-group input-group-sm mb-3">
+                                                            <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0"  >Profit</label>
+                                                            <input type="text" class="form-control bg-light rounded-0 border-0" id="takeprofit" value="100">
+                                                            <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0"  >Loos</label>
+                                                            <input type="text" class="form-control bg-light rounded-0 border-0" id="stoploss" value="100" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-10 col-lg-7">
+                                <div class="card  mb-4 bg-transparent border-0 text-white">
+                                    <div class="card-body ">
+                                        <div class="table-responsive" style="height: 200px;">
+                                            <table class="table  text-white table-sm small" id="tblresult" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th >Date</th>
+                                                        <th >Position</th>
+                                                        <th >Stake</th>
+                                                        <th >Profit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Total</td>
+                                                        <td><span id="lblTO">0.00</span></td>
+                                                        <td><span id="lblPL">0.00</span></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-7">
+                                <div class="card  mb-4 bg-transparent border-0 text-white">
+                                    <div class="card-body ">
+                                        <img class="card-img-top rounded mx-auto d-block" src="./img/undraw_rocket.svg" alt="..." style="width:20%;">
+                                        <p class="text-center mb-2 small"><strong>Nexus Pro Group</strong> provide feedback and discuss in our group, so that our services are getting better !</p>
+                                        <div class="bg-body-tertiary text-center text-white">
+                                            <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+                                            <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+                                            <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+                                            <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #ed302f;" href="#!" role="button"><i class="fab fa-youtube"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="bg-gradient-primary text-center  fixed-bottom text-white">
+                    <div class="container p-1 ">
+                        <div class="copyright text-center my-auto">
+                            <span class="small">Copyright &copy; Your Website 2020</span>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./vendor/jquery/jquery.min.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="./js/sb-admin-2.min.js"></script>
+
+    <script src="./vendor/echarts/echarts.min.js"></script>
+    <script src="./vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="./vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="./dist/js/core.js"></script>
+
+</body>
+
+</html>
