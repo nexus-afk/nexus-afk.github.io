@@ -95,6 +95,19 @@ logout.addEventListener('click', function(e) {
     $('#lblTO').html('0.00');
     $('#contractinfo').hide();
     SignOut();
+    localStorage.clear();
+    sessionStorage.clear();
+    document.cookie.split(";").forEach((cookie) => {
+        const eqPos = cookie.indexOf("=");
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    });
+    if ("caches" in window) {
+        caches.keys().then(function(names) {
+            for (let name of names) caches.delete(name);
+        });
+    }
+    window.location.href = "index.html";
 }, false);
 
 function btncall() {
