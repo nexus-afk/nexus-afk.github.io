@@ -63,77 +63,7 @@
         display: flex;
         align-items: center;
     }
-    /* Styling container untuk select */
-.custom-select-container {
-    position: relative;
-    width: 200px;
-}
-
-/* Styling untuk elemen select dengan transparansi */
-.custom-select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.3); /* Transparan pada border */
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1); /* Transparan pada background */
-    color: #333; /* Warna teks tetap solid */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-}
-
-/* Tambahkan ikon panah ke select */
-.custom-select::after {
-    content: '▼';
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.5); /* Transparansi pada ikon panah */
-}
-
-/* Styling untuk option */
-.custom-select option {
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.2); /* Transparansi pada opsi */
-    color: #333; /* Warna teks tetap solid */
-}
-
-/* Hover styling untuk select */
-.custom-select:hover {
-    border-color: rgba(0, 0, 0, 0.5); /* Ubah warna border saat hover */
-}
-
-/* Fokus styling */
-.custom-select:focus {
-    border-color: rgba(255, 255, 255, 0.2);
-    outline: none;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-}
-        /* Responsif: Penyesuaian font-size dan padding di layar kecil */
-@media (max-width: 768px) {
-    .custom-select {
-        padding: 8px;
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .custom-select {
-        padding: 6px;
-        font-size: 12px;
-    }
-
-    /* Perkecil ikon panah */
-    .custom-select-container::after {
-        font-size: 10px;
-        right: 10px;
-    }
-}
+    
 
     </style>
 </head>
