@@ -464,7 +464,6 @@ function SignOut() {
     }
     ws.send(JSON.stringify(msg));
 }
-
 function Init() {
         ws = new WebSocket(url);
         ws.onmessage = function(msg) {
@@ -2242,7 +2241,7 @@ function Init() {
                                 max: 'dataMax',
                                 axisLine: {
                                     lineStyle: {
-                                        color: '#93a2b5'
+                                        color: '#5e5c5c'
                                     }
                                 }
                             },
@@ -2250,20 +2249,20 @@ function Init() {
                                 scale: true,
                                 axisLine: {
                                     lineStyle: {
-                                        color: '#93a2b5'
+                                        color: '#5e5c5c'
                                     }
                                 },
                                 splitLine: {
                                     show: true,
                                     lineStyle: {
-                                        color: '#93a2b5'
+                                        color: '#333232'
                                     }
                                 }
                             },
                             grid: {
                                 bottom: 25,
-                                left:  55,
-                                right: 5,
+                                left:  65,
+                                right: 18,
                                 top: 10
                             },
                             dataZoom: [{
