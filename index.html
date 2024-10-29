@@ -4,9 +4,6 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,7 +34,7 @@
     }
     @media screen and (max-width: 500px){
         #candleStickChart {
-            height: 50vh;
+            height: 30vh;
         }
     }
     .button-rise {
@@ -68,33 +65,85 @@
         display: flex;
         align-items: center;
     }
+    /* Styling container untuk select */
+.custom-select-container {
+    position: relative;
+    width: 200px;
+}
+
+/* Styling untuk elemen select dengan transparansi */
+.custom-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Transparan pada border */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Transparan pada background */
+    color: #333; /* Warna teks tetap solid */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+/* Tambahkan ikon panah ke select */
+.custom-select::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5); /* Transparansi pada ikon panah */
+}
+
+/* Styling untuk option */
+.custom-select option {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2); /* Transparansi pada opsi */
+    color: #333; /* Warna teks tetap solid */
+}
+
+/* Hover styling untuk select */
+.custom-select:hover {
+    border-color: rgba(0, 0, 0, 0.5); /* Ubah warna border saat hover */
+}
+
+/* Fokus styling */
+.custom-select:focus {
+    border-color: rgba(255, 255, 255, 0.2);
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
     </style>
 </head>
 
-<body class="bg-gradient-primary" id="page-top">
+<body id="page-top" style="background: #1f1f1f;">
     <div id="splash">
         <div class="container col-lg-4">
             <div class="row justify-content-center">
                 <div class="col-xl-10 col-lg-12 col-md-9">
                     <div class="card o-hidden border-0 shadow-lg my-5">
                         <div class="card">
-                            <img  src="./img/front.jpeg"  alt="..." >
+                            <img  src="./img/logo.jpeg"  alt="..." >
                         </div>
-                        <div class="card-body p-0 bg-gradient-primary">
+                        <div class="card-body p-0 bg-gradient-dark">
                             <div class="p-3">
                                 <div class="text-center">
-                                    <h6 class="text-white mb-4">Welcome Back!</h6>
+                                <img class="card-img-top rounded mx-auto d-block mb-2" src="./img/deriv-logo.png" alt="..." style="width:35%;">
                                 </div>
                                     <div class="form-group">
-                                        <input class="form-control form-control-user" type="password" name="password" id="token" placeholder="API Deriv">
+                                        <input class="form-control form-control-user" type="password" name="password" id="token" placeholder="API TOKEN">
                                     </div>
-                                    <button class="btn btn-primary btn-user btn-block" id="btnconnect">START TRADE</button>
+                                    <button class="btn btn-danger btn-user btn-block" id="btnconnect">START TRADE</button>
                                 <hr class="bg-white">
                                 <div class="text-center">
-                                    <a class="small text-white" href="https://app.deriv.me/account/api-token" target="_blank">Forgot API Deriv !</a>
+                                    <a class="small text-white btn" href="https://app.deriv.me/account/api-token" target="_blank">Forgot API Deriv !</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small text-white" href="https://track.deriv.be/_saWp5-04g0I5TVC3w-F7AGNd7ZgqdRLk/1/" target="_blank">Don't have Deriv acccount ?</a>
+                                    <a class="small text-white btn" href="https://track.deriv.be/_saWp5-04g0I5TVC3w-F7AGNd7ZgqdRLk/1/" target="_blank">Don't have Deriv acccount ?</a>
                                 </div>
                             </div>
                         </div>
@@ -105,9 +154,9 @@
     </div>
     <div id="utama" style="display: none;">
         <div id="wrapper">
-            <div id="content-wrapper" class="d-flex flex-column bg-gradient-primary">
+            <div id="content-wrapper" class="d-flex flex-column" style="background: #1f1f1f;">
                 <div id="content">
-                    <nav class="navbar navbar-expand navbar-dark bg-gradient-primary topbar mb-4 static-top shadow">
+                    <nav class="navbar navbar-expand navbar-dark bg-gradient-dark topbar mb-2 static-top shadow">
                         <a class="navbar-brand " href="#">
                             <img class="rounded-circle small" src="./img/ikonnex.jpeg" width="35" height="35" alt="...">
                             <span class="small">NEXUS <sup>Pro</sup></span>
@@ -151,18 +200,18 @@
                                     <img class="img-profile rounded-circle"
                                         src="./img/undraw_profile.svg">
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-gradient-primary border-0"
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-gradient-light border-0"
                                     aria-labelledby="userDropdown">
-                                    <a class="dropdown-item text-white" href="#">
+                                    <a class="dropdown-item " href="#">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
                                         <span id="loginid" >0</span>
                                     </a>
-                                    <a class="dropdown-item text-white" href="#">
+                                    <a class="dropdown-item" href="#">
                                         <i class="fas fa-solid fa-wallet fa-sm fa-fw mr-2 "></i>
                                         <span id="email" >0</span>
                                     </a>
-                                    <div class="dropdown-divider text-white"></div>
-                                    <a class="dropdown-item text-white" href="index.html"  id="logout">
+                                    <div class="dropdown-divider "></div>
+                                    <a class="dropdown-item " href="logout.php"  id="logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
                                         <span >Logouts</span>
                                     </a>
@@ -170,7 +219,6 @@
                             </li>
                         </ul>
                     </nav>
-                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-xl-10 col-lg-7 mb-2">
                                 <div class="card  mb-4  bg-transparent border-0 rounded-0 ">
@@ -192,7 +240,7 @@
                                     <div class="card-body ">
                                         <ul class="navbar-nav   sidebar-light" id="accordionSetup">
                                             <li class="nav-item mb-3 ">
-                                                <div class="input-group mb-3 "  >
+                                                <div class="input-group mb-2 "  >
                                                     <label class="input-group-text-sm text-white border-0 small"><span id="servertime">-</span></label>
                                                 </div>
                                                 <div class="input-group mb-2 "  >
@@ -246,7 +294,7 @@
                                                 <hr class="bg-white">
                                             </li>
                                             <li class="nav-item">
-                                                <div class="input-group input-group-sm mb-3 "  >
+                                                <div class="input-group input-group-sm mb-2 "  >
                                                     <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0">Option</label>
                                                     <select id="contract" class="custom-select bg-light rounded-0" >
                                                         <option value="RF">R/F</option>
@@ -255,7 +303,7 @@
                                                     <input type="text" class="form-control bg-light rounded-0 " id="stake"  value="0.5">
                                                     <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0" id="curency">USD</label>
                                                 </div>
-                                                <div class="input-group input-group-sm mb-3 " id="barrier-set" style="display: none;"  >
+                                                <div class="input-group input-group-sm mb-2 " id="barrier-set" style="display: none;"  >
                                                     <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0">High</label>
                                                     <input type="text" class="form-control bg-light rounded-0 " id="barrier1" value="+0.82">
                                                     <label class="form-control-sm text-white bg-gradient-success rounded-0 border-0">Low</label>
@@ -340,13 +388,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xl-10 col-lg-7">
+                            <div class="col-xl-8 col-lg-7">
                                 <div class="card  mb-4 bg-transparent border-0 text-white">
                                     <div class="card-body ">
-                                        <div class="table-responsive" style="height: 200px;">
+                                        <div class="table-responsive" style="height: 250px;">
                                             <table class="table  text-white table-sm small" id="tblresult" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
@@ -371,24 +417,37 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-xl-2 col-lg-7">
+                                <div class="card  mb-4 bg-transparent border-0 text-white mt-4">
+                                <img class="card-img-top rounded mx-auto d-block" src="./img/deriv-logo.png" alt="..." style="width:35%;">
+                                    <div class="card-body text-center">
+                                        <p class="text-center mb-2 small">Trading apps by taking advantage of the power of <strong>Deriv</strong> trading services. Share this apps with fellow traders or customers, and get a chance to earn more.</p>
+                                        
+                                    </div>
+                                    <div class="bg-body-tertiary text-center text-white">
+                                            <a data-mdb-ripple-init class="btn btn-danger border-0"  href="#!" role="button">REGISTER</a>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-7 mb-4">
                                 <div class="card  mb-4 bg-transparent border-0 text-white">
+                                <img class="card-img-top rounded mx-auto d-block" src="./img/undraw_rocket.svg" alt="..." style="width:15%;">
                                     <div class="card-body ">
-                                        <img class="card-img-top rounded mx-auto d-block" src="./img/undraw_rocket.svg" alt="..." style="width:20%;">
-                                        <p class="text-center mb-2 small"><strong>Nexus Pro Group</strong> provide feedback and discuss in our group, so that our services are getting better !</p>
-                                        <div class="bg-body-tertiary text-center text-white">
+                                        <p class="text-center mb-2 small">Automate your trades on financial markets and 24/7 Derived Indices. Start with just 0.35 USD, and choose from multiple contract types and durations to suit your trading strategy.</p>
+                                        
+                                    </div>
+                                    <div class="bg-body-tertiary text-center text-white">
                                             <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
                                             <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
                                             <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
                                             <a data-mdb-ripple-init class="btn btn-primary border-0" style="background-color: #ed302f;" href="#!" role="button"><i class="fab fa-youtube"></i></a>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
-                <footer class="bg-gradient-primary text-center  fixed-bottom text-white">
+                <footer class="bg-gradient-dark text-center  fixed-bottom text-white">
                     <div class="container p-1 ">
                         <div class="copyright text-center my-auto">
                             <span class="small">Copyright &copy; Your Website 2020</span>
